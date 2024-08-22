@@ -22,7 +22,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.brown[700],
         elevation: 0,
-        title: Text('Good Morning, John!'),
+        title: Text('Good Morning, John!', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -36,30 +36,30 @@ class CoffeeShopHomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child:Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Featured Section
-            Text(
-              'Featured Drinks',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 16),
-            Container(
-              height: 150,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  featuredItem('img/coffee1.jpeg', 'Caramel Latte', '\$5.00'),
-                  featuredItem('img/coffee2.jpeg', 'Espresso', '\$3.50'),
-                  featuredItem('img/coffee3.jpeg', 'Cold Brew', '\$4.00'),
-                ],
-              ),
-            ),
-            SizedBox(height: 24),
+            // Text(
+            //   'Featured Drinks',
+            //   style: TextStyle(
+            //     fontSize: 20,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+            // SizedBox(height: 16),
+            // Container(
+            //   height: 150,
+            //   child: ListView(
+            //     scrollDirection: Axis.horizontal,
+            //     children: [
+            //       featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+            //       featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+            //       featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(height: 24),
             // Categories Section
             Text(
               'Categories',
@@ -92,10 +92,15 @@ class CoffeeShopHomeScreen extends StatelessWidget {
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
                 children: [
-                  menuItem('img/coffee1.jpeg', 'Caramel Latte', '\$5.00'),
-                  menuItem('img/coffee2.jpeg', 'Espresso', '\$3.50'),
-                  menuItem('img/coffee3.jpeg', 'Cold Brew', '\$4.00'),
-                  menuItem('img/coffee4.jpeg', 'Cappuccino', '\$4.50'),
+                  menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                  menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                  menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                  menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+                  menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                  menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                  menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                  menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+
                 ],
               ),
             ),
@@ -124,6 +129,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
         selectedItemColor: Colors.brown[700],
         unselectedItemColor: Colors.brown[300],
       ),
+    
     );
   }
 
