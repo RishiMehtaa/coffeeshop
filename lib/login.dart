@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-import 'main.dart'; 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home.dart'; 
 import 'signup.dart';
 
 
@@ -14,55 +14,55 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String _errorMessage = '';
 
-  void _login() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => CoffeeShopHomeScreen()),
-      );
-      // Clear the text fields after successful login
-      _emailController.clear();
-      _usernameController.clear();
-      _passwordController.clear();
-    }
-  }
-
-  //  Future<void> _login() async {
+  // void _login() {
   //   if (_formKey.currentState!.validate()) {
-  //     try {
-  //       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-  //         email: _emailController.text,
-  //         password: _passwordController.text,
-  //       );
-  //       Navigator.pushReplacement(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => CurrencyConverter()),
-  //       );
-  //               _emailController.clear();
-  //              _passwordController.clear();
-
-  //     } on FirebaseAuthException catch (e) {
-  //       setState(() {
-  //         if (e.code == 'user-not-found') {
-  //           _errorMessage = 'No user found for that email.';
-  //         } else if (e.code == 'wrong-password') {
-  //           _errorMessage = 'Wrong password provided.';
-  //         } else {
-  //           _errorMessage = 'An error occurred. Please try again.';
-  //         }
-  //                     print(_errorMessage);
-
-  //       });
-  //     } catch (e) {
-  //       setState(() {
-  //         _errorMessage = 'An error occurred. Please try again.';
-  //       });
-  //     }
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => CoffeeShopHomeScreen()),
+  //     );
+  //     // Clear the text fields after successful login
+  //     _emailController.clear();
+  //     _usernameController.clear();
+  //     _passwordController.clear();
   //   }
   // }
+
+   Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => CoffeeShopHomeScreen()),
+        );
+                _emailController.clear();
+               _passwordController.clear();
+
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          if (e.code == 'user-not-found') {
+            _errorMessage = 'No user found for that email.';
+          } else if (e.code == 'wrong-password') {
+            _errorMessage = 'Wrong password provided.';
+          } else {
+            _errorMessage = 'An error occurred. Please try again.';
+          }
+                      print(_errorMessage);
+
+        });
+      } catch (e) {
+        setState(() {
+          _errorMessage = 'An error occurred. Please try again.';
+        });
+      }
+    }
+  }
 
 
   void _navigateToSignUp() {

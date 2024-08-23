@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -13,31 +13,31 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void _signUp() {
-    if (_formKey.currentState!.validate()) {
-      // Perform sign-up logic here (e.g., API call, registration)
-      Navigator.pop(context);  // Go back to the login page after successful sign-up
-    }
-  }
-
-  //  Future<void> _signUp() async {
+  // void _signUp() {
   //   if (_formKey.currentState!.validate()) {
-  //     try {
-  //       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-  //         email: _emailController.text,
-  //         password: _passwordController.text,
-  //       );
-  //       Navigator.pop(context);
-  //     } catch (e) {
-  //       print('Failed to sign up: $e');
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('Failed to sign up: $e')),
-  //       );
-  //     }
+  //     // Perform sign-up logic here (e.g., API call, registration)
+  //     Navigator.pop(context);  // Go back to the login page after successful sign-up
   //   }
   // }
+
+   Future<void> _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        Navigator.pop(context);
+      } catch (e) {
+        print('Failed to sign up: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to sign up: $e')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
