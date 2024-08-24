@@ -75,9 +75,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 207, 245, 255),
+      backgroundColor: Color.fromARGB(255, 255, 202, 187),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 49, 65, 243),
+        backgroundColor: Color.fromARGB(255, 102, 46, 38),
         title: Text('Login'),
         centerTitle: true,
         titleTextStyle: TextStyle(color: Colors.white),
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }
-                  if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(value)) {
+                  if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(value.trim())) {
                     return 'Please enter a valid email';
                   }
                   return null;
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: _login,
                 child: Text('Login'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 49, 65, 243),
+                  backgroundColor: Color.fromARGB(255, 102, 46, 38),
                   foregroundColor: Color.fromARGB(255, 255, 255, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
@@ -159,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: Text(
                   'Don\'t have an account? Sign Up',
-                  style: TextStyle(color: Color.fromARGB(255, 49, 65, 243)),
+                  style: TextStyle(color: Color.fromARGB(255, 102, 46, 38)),
                 ),
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:coffeeshop/login.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'signup.dart';
 
 
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Coffee Shop',
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      // darkTheme: ThemeData(brightness: Brightness.dark),
       // home: CoffeeShopHomeScreen(),
       home: LoginPage(),
 
@@ -18,14 +19,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// void getusername()
+// {
+//    User? user = FirebaseAuth.instance.currentUser;
+// }
 class CoffeeShopHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  const Color.fromARGB(255, 255, 233, 227),
       appBar: AppBar(
         backgroundColor: Colors.brown[700],
         elevation: 0,
-        title: Text('Good Morning, John!', style: TextStyle(color: Colors.white),),
+        title: Text('Good Morning, !', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -39,82 +45,113 @@ class CoffeeShopHomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child:Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Featured Section
-            // Text(
-            //   'Featured Drinks',
-            //   style: TextStyle(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // SizedBox(height: 16),
-            // Container(
-            //   height: 150,
-            //   child: ListView(
-            //     scrollDirection: Axis.horizontal,
-            //     children: [
-            //       featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-            //       featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-            //       featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(height: 24),
-            // Categories Section
-            Text(
-              'Categories',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+      body: 
+        Padding(
+          padding: const EdgeInsets.all(0),
+          child:
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Featured Section
+              // Categories Section
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(color:  Colors.brown[700],borderRadius:BorderRadius.only(bottomLeft: Radius.circular(46),bottomRight: Radius.circular(46))),
+                child: Column( 
+                  children:[
+                    Text(
+                      'Categories',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 252, 242)
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        categoryItem('Espresso', Icons.local_cafe),
+                        categoryItem('Latte', Icons.coffee),
+                        categoryItem('Cold Brew', Icons.icecream),
+                      ],
+                    )
+                  ]
+                )
               ),
-            ),
-            SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                categoryItem('Espresso', Icons.local_cafe),
-                categoryItem('Latte', Icons.coffee),
-                categoryItem('Cold Brew', Icons.icecream),
-              ],
-            ),
-            SizedBox(height: 24),
-            // Menu Section
-            Text(
-              'Menu',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 24),
+               Container(
+                padding: EdgeInsets.only(left: 16),
+               child: Text(
+                'Featured Drinks',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
+              SizedBox(height: 16),
+              Container(
+                padding: EdgeInsets.only(left: 16,right: 16),
+                height: 150,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                    featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                    featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                children: [
-                  menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                  menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                  menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                  menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-                  menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                  menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                  menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                  menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+              SizedBox(height: 24),
 
-                ],
-              ),
-            ),
-          ],
-        ),
+              // Menu Section
+              // Container(
+              //   padding: EdgeInsets.all(16),
+              //   child: 
+              //   Column(
+              //     children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 16),
+                      child: Text(
+                              'Menu',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                    ),
+                    Expanded(
+                      child: 
+                      GridView.count(
+                        padding: EdgeInsets.only(left: 16,right: 16),
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        children: [
+                          menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                          menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                          menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                          menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+                          menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                          menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                          menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                          menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+
+                        ],
+                      ),
+                    ),
+                  
+                
+              
+          
+            ],
+          ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // backgroundColor: const Color.fromARGB(255, 44, 39, 37),
         items: [
           BottomNavigationBarItem(
+            backgroundColor: Colors.brown[700],
             icon: Icon(Icons.home),
             label: 'Home',
           ),
@@ -131,8 +168,8 @@ class CoffeeShopHomeScreen extends StatelessWidget {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.brown[700],
-        unselectedItemColor: Colors.brown[300],
+        selectedItemColor: const Color.fromARGB(255, 255, 231, 222),
+        unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
       ),
     
     );
@@ -198,7 +235,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
         SizedBox(height: 8),
         Text(
           title,
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color:  const Color.fromARGB(255, 255, 255, 255)),
         ),
       ],
     );
