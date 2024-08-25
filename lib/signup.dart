@@ -29,6 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
+        
         Navigator.pop(context);
       } catch (e) {
         print('Failed to sign up: $e');

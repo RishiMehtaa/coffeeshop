@@ -29,17 +29,12 @@ class CoffeeShopHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor:  const Color.fromARGB(255, 255, 233, 227),
       appBar: AppBar(
-        backgroundColor: Colors.brown[700],
+        backgroundColor: const Color.fromARGB(255, 64, 44, 38),
         elevation: 0,
         title: Text('Good Morning, !', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
             color: Colors.white,
             onPressed: () {},
           ),
@@ -56,7 +51,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
               // Categories Section
               Container(
                 padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(color:  Colors.brown[700],borderRadius:BorderRadius.only(bottomLeft: Radius.circular(46),bottomRight: Radius.circular(46))),
+                decoration: BoxDecoration(color:  const Color.fromARGB(255, 64, 44, 38),borderRadius:BorderRadius.only(bottomLeft: Radius.circular(46),bottomRight: Radius.circular(46))),
                 child: Column( 
                   children:[
                     Text(
@@ -92,7 +87,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
               SizedBox(height: 16),
               Container(
                 padding: EdgeInsets.only(left: 16,right: 16),
-                height: 150,
+                height: 90,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -123,7 +118,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
                     Expanded(
                       child: 
                       GridView.count(
-                        padding: EdgeInsets.only(left: 16,right: 16),
+                        padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
@@ -148,10 +143,9 @@ class CoffeeShopHomeScreen extends StatelessWidget {
           ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: const Color.fromARGB(255, 44, 39, 37),
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Colors.brown[700],
+            backgroundColor: const Color.fromARGB(255, 64, 44, 38),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
@@ -160,8 +154,8 @@ class CoffeeShopHomeScreen extends StatelessWidget {
             label: 'Menu',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long),
-            label: 'Orders',
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
