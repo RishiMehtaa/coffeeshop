@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:coffeeshop/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +24,25 @@ class MyApp extends StatelessWidget {
 // {
 //    User? user = FirebaseAuth.instance.currentUser;
 // }
+
 class CoffeeShopHomeScreen extends StatelessWidget {
+  Future<String?> getUsername() async {
+  User? user = FirebaseAuth.instance.currentUser;
+
+  if (user != null) {
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    if (userDoc.exists) {
+      return userDoc.get('username');
+    }
+  }
+
+  return null;
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +50,7 @@ class CoffeeShopHomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 64, 44, 38),
         elevation: 0,
-        title: Text('Good Morning, !', style: TextStyle(color: Colors.white),),
+        title: Text('Good Morning,$getUsername() !', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -47,7 +66,6 @@ class CoffeeShopHomeScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Featured Section
               // Categories Section
               Container(
                 padding: EdgeInsets.all(16),
@@ -77,13 +95,14 @@ class CoffeeShopHomeScreen extends StatelessWidget {
               SizedBox(height: 24),
                Container(
                 padding: EdgeInsets.only(left: 16),
-               child: Text(
-                'Featured Drinks',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              )),
+                child: Text(
+                  'Featured Drinks',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ),
               SizedBox(height: 16),
               Container(
                 padding: EdgeInsets.only(left: 16,right: 16),
@@ -98,46 +117,37 @@ class CoffeeShopHomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24),
+              Container(
+                padding: EdgeInsets.only(left: 16),
+                child: Text(
+                        'Menu',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+              ),
+              Expanded(
+                child: 
+                GridView.count(
+                  // physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: [
+                    menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                    menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                    menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                    menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
+                    menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                    menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                    menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                    menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
 
-              // Menu Section
-              // Container(
-              //   padding: EdgeInsets.all(16),
-              //   child: 
-              //   Column(
-              //     children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 16),
-                      child: Text(
-                              'Menu',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                    ),
-                    Expanded(
-                      child: 
-                      GridView.count(
-                        padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        children: [
-                          menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                          menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                          menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                          menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-                          menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                          menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                          menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                          menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-
-                        ],
-                      ),
-                    ),
-                  
-                
-              
+                  ],
+                ),
+              ),
           
             ],
           ),

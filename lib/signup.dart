@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,7 +29,15 @@ class _SignUpPageState extends State<SignUpPage> {
         UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
+          
         );
+         User? user = userCredential.user;
+
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+        'username': _usernameController.text.trim(),
+        'email': _emailController.text.trim(),
+      });}
         
         Navigator.pop(context);
       } catch (e) {
@@ -43,16 +52,30 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 202, 187),
+      backgroundColor: Color.fromARGB(255, 228, 228, 228),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 111, 62, 53),
-        foregroundColor:  const Color.fromARGB(255, 255, 255, 255),
-        title: Text('Sign Up'),
-        centerTitle: true,
-        titleTextStyle: TextStyle(color: Colors.white),
+        backgroundColor: Color.fromARGB(90, 0, 0, 0),
+        foregroundColor:  Color.fromARGB(255, 255, 255, 255),
+        // title: Text('Sign Up'),
+        // centerTitle: true,
+        // titleTextStyle: TextStyle(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+            body: Container(
+            padding: EdgeInsets.only(top: 90,left: 20,right: 20),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage('img/bg.jpg'),fit: BoxFit.cover)
+            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+          children:[
+            Container( 
+            decoration: BoxDecoration(
+              color: Color.fromARGB(104, 86, 59, 59),
+              borderRadius: BorderRadius.all(Radius.circular(56))
+               ),
+
+      child: Padding(
+        padding: const EdgeInsets.all(26.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -160,6 +183,11 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
+                )
+          ]
+        ),
+      )
+
     );
   }
 }
