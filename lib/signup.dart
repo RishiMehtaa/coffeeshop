@@ -69,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.start,
           children:[
             Container( 
+              
             decoration: BoxDecoration(
               color: Color.fromARGB(104, 86, 59, 59),
               borderRadius: BorderRadius.all(Radius.circular(56))

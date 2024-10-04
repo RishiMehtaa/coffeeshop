@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => CoffeeShopHomeScreen()),
+          MaterialPageRoute(builder: (context) => home()),
         );
                 _emailController.clear();
                _passwordController.clear();
