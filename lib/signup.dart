@@ -4,16 +4,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // void _signUp() {
@@ -52,17 +54,17 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 228, 228, 228),
+      backgroundColor: const Color.fromARGB(255, 228, 228, 228),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(90, 0, 0, 0),
-        foregroundColor:  Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(90, 0, 0, 0),
+        foregroundColor:  const Color.fromARGB(255, 255, 255, 255),
         // title: Text('Sign Up'),
         // centerTitle: true,
         // titleTextStyle: TextStyle(color: Colors.white),
       ),
             body: Container(
-            padding: EdgeInsets.only(top: 90,left: 20,right: 20),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.only(top: 90,left: 20,right: 20),
+            decoration: const BoxDecoration(
               image: DecorationImage(image: AssetImage('img/bg.jpg'),fit: BoxFit.cover)
             ),
           child: Column(
@@ -70,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
           children:[
             Container( 
               
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(104, 86, 59, 59),
               borderRadius: BorderRadius.all(Radius.circular(56))
                ),
@@ -86,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: _emailController,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromRGBO(255, 255, 255, 1),
+                  fillColor: const Color.fromRGBO(255, 255, 255, 1),
                   labelText: 'Email',
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -103,12 +105,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _usernameController,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromRGBO(255, 255, 255, 1),
+                  fillColor: const Color.fromRGBO(255, 255, 255, 1),
                   labelText: 'Username',
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -122,12 +124,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromRGBO(255, 255, 255, 1),
+                  fillColor: const Color.fromRGBO(255, 255, 255, 1),
                   labelText: 'Password',
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -145,12 +147,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromRGBO(255, 255, 255, 1),
+                  fillColor: const Color.fromRGBO(255, 255, 255, 1),
                   labelText: 'Confirm Password',
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -168,17 +170,17 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _signUp,
-                child: Text('Sign Up',),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 102, 46, 38),
-                  foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                  backgroundColor: const Color.fromARGB(255, 102, 46, 38),
+                  foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
+                child: const Text('Sign Up',),
               ),
             ],
           ),

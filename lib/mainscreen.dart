@@ -5,6 +5,8 @@ import 'cart.dart';
 import 'profile.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -14,10 +16,10 @@ class _MainScreenState extends State<MainScreen> {
 
   // List of screens to navigate to
   final List<Widget> _screens = [
-    home(),    // Replace with your home page
-    menu(),    // Replace with your menu page
-    cart(),    // Replace with your cart page
-    profile(), // Replace with your profile page
+    const home(),    // Replace with your home page
+    const menu(),    // Replace with your menu page
+    const cart(),    // Replace with your cart page
+    const profile(), // Replace with your profile page
   ];
 
   // Method to handle navigation between screens
@@ -32,28 +34,34 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: _screens[_selectedIndex],  // Display the selected screen
       bottomNavigationBar: BottomNavigationBar(
+        
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            backgroundColor: Color.fromARGB(255, 66, 73, 52),
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Color.fromARGB(255, 66, 73, 52),
             icon: Icon(Icons.menu_book),
             label: 'Menu',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Color.fromARGB(255, 66, 73, 52),
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Color.fromARGB(255, 66, 73, 52),
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,  // Highlight the current screen
-        selectedItemColor: const Color.fromARGB(255, 255, 231, 222),
-        unselectedItemColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 64, 44, 38),
+        selectedItemColor:  const Color.fromARGB(255, 255, 255, 255),
+        // fixedColor: Color.fromARGB(255, 64, 44, 38),
+        unselectedItemColor: const Color.fromARGB(255, 135, 144, 118),
+        backgroundColor:  const Color.fromARGB(255, 137, 74, 55),
         onTap: _onItemTapped,  // Handle tab switch
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffeeshop/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart'; 
@@ -6,15 +7,17 @@ import 'signup.dart';
 
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _errorMessage = '';
 
@@ -40,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => home()),
+          MaterialPageRoute(builder: (context) => const MainScreen()),
         );
                 _emailController.clear();
                _passwordController.clear();
@@ -69,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToSignUp() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SignUpPage()),
+      MaterialPageRoute(builder: (context) => const SignUpPage()),
     );
   }
 
@@ -84,15 +87,15 @@ class _LoginPageState extends State<LoginPage> {
       //   titleTextStyle: TextStyle(color: Colors.white),
       // ),
       body: Container(
-            padding: EdgeInsets.only(top: 100,left: 20,right: 20),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.only(top: 100,left: 20,right: 20),
+            decoration: const BoxDecoration(
               image: DecorationImage(image: AssetImage('img/bg.jpg'),fit: BoxFit.cover)
             ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
           children:[
             Container( 
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(104, 86, 59, 59),
               borderRadius: BorderRadius.all(Radius.circular(56))
                ),
@@ -107,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _emailController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Color.fromRGBO(255, 255, 255, 1),
+                        fillColor: const Color.fromRGBO(255, 255, 255, 1),
                         labelText: 'Email',
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
@@ -124,13 +127,13 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextFormField(
                       controller: _passwordController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Color.fromRGBO(255, 255, 255, 1),
+                        fillColor: const Color.fromRGBO(255, 255, 255, 1),
                         labelText: 'Password',
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
@@ -150,19 +153,19 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: _login,
-                      child: Text('Login'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 102, 46, 38),
-                        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                        backgroundColor: const Color.fromARGB(255, 102, 46, 38),
+                        foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
+                      child: const Text('Login'),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextButton(
                       onPressed: () {
                               _navigateToSignUp();
@@ -171,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                               _passwordController.clear();
 
                       },
-                      child: Text(
+                      child: const Text(
                         'Don\'t have an account? Sign Up',
                         style: TextStyle(color: Color.fromARGB(255, 102, 46, 38)),
                         ),
