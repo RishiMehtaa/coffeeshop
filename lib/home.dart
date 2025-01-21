@@ -1,597 +1,252 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-// import 'package:coffeeshop/login.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'signup.dart';
-// import 'splash.dart';
-// import 'package:animated_splash_screen/animated_splash_screen.dart';
-// import 'menu.dart';
-// import 'cart.dart';
-// import 'profile.dart';
 
-
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Coffee Shop',
-//       // darkTheme: ThemeData(brightness: Brightness.dark,colorScheme: ColorScheme.dark()),
-//       // home: home(),
-//       // home: LoginPage(),
-//       home: AnimatedSplashScreen(splash: Center(
-//         child: Container(
-//         decoration: BoxDecoration(
-//         // borderRadius: BorderRadius.circular(16),
-//         image: DecorationImage(
-//           image: AssetImage('img/logo.png'),
-//           // fit: BoxFit.cover,
-//         ),
-//       ),
-
-          
-//         ),
-//       ),
-//       // nextScreen: LoginPage(),
-//       nextScreen: home(),
-
-//       duration: 1500,
-//       splashIconSize: 300,
-//       backgroundColor: Color.fromARGB(255, 222, 190, 163),
-//       splashTransition: SplashTransition.fadeTransition,
-//       ),
-      
-
-
-//     );
-//   }
-// }
-
-// // void getusername()
-// // {
-// //    User? user = FirebaseAuth.instance.currentUser;
-// // }
-
-// class home extends StatelessWidget {
-// // class home extends StatefulWidget{
-// //   homestate createState() => homestate();
-
-// // }
-// // class homestate extends State<home> {
-
-//   Future<String?> getUsername() async {
-//   User? user = FirebaseAuth.instance.currentUser;
-
-//   if (user != null) {
-//     DocumentSnapshot userDoc = await FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(user.uid)
-//         .get();
-
-//     if (userDoc.exists) {
-//       return userDoc.get('username');
-//     }
-//   }
-
-//   return null;
-// }
-
-//   _tohome(){
-//     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>home()));
-
-//   }
-
-//   _tomenu(){
-//     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>menu()));
-//   }
-
-//   _tocart(){
-//     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>cart()));
-//   }
-
-//   _toprofile(){
-//     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>profile()));
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor:  Color.fromARGB(255, 255, 255, 255),
-//       appBar: AppBar(
-//         backgroundColor: const Color.fromARGB(255, 64, 44, 38),
-//         elevation: 0,
-//         title: Text('Good Morning, Rishi !', style: TextStyle(color: Colors.white),),
-//         actions: [
-//           IconButton(
-//             icon: Icon(Icons.search),
-//             color: Colors.white,
-//             onPressed: () {},
-//           ),
-//         ],
-//       ),
-//       body: 
-//         Padding(
-//           padding: const EdgeInsets.all(0),
-//           child:
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               // Categories Section
-//               Container(
-//                 padding: EdgeInsets.all(16),
-//                 decoration: BoxDecoration(color:  const Color.fromARGB(255, 64, 44, 38),borderRadius:BorderRadius.only(bottomLeft: Radius.circular(46),bottomRight: Radius.circular(46))),
-//                 child: Column( 
-//                   children:[
-//                     Text(
-//                       'Categories',
-//                       style: TextStyle(
-//                         fontSize: 20,
-//                         fontWeight: FontWeight.bold,
-//                         color: Color.fromARGB(255, 255, 252, 242)
-//                       ),
-//                     ),
-//                     SizedBox(height: 16),
-//                     Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                       children: [
-//                         categoryItem('Espresso', Icons.local_cafe),
-//                         categoryItem('Latte', Icons.coffee),
-//                         categoryItem('Cold Brew', Icons.icecream),
-//                       ],
-//                     )
-//                   ]
-//                 )
-//               ),
-//               SizedBox(height: 24),
-//                Container(
-//                 padding: EdgeInsets.only(left: 16),
-//                 child: Text(
-//                   'Featured Drinks',
-//                   style: TextStyle(
-//                     fontSize: 20,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 )
-//               ),
-//               SizedBox(height: 16),
-//               Container(
-//                 padding: EdgeInsets.only(left: 16,right: 16),
-//                 height: 90,
-//                 child: ListView(
-//                   scrollDirection: Axis.horizontal,
-//                   children: [
-//                     featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-//                     featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-//                     featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(height: 24),
-//               Container(
-//                 padding: EdgeInsets.only(left: 16),
-//                 child: Text(
-//                         'Menu',
-//                         style: TextStyle(
-//                           fontSize: 20,
-//                           fontWeight: FontWeight.bold,
-//                         ),
-//                       )
-//               ),
-//               Expanded(
-//                 child: 
-//                 GridView.count(
-//                   // physics: NeverScrollableScrollPhysics(),
-//                   padding: EdgeInsets.only(left: 16,right: 16,bottom: 16),
-//                   crossAxisCount: 2,
-//                   crossAxisSpacing: 16,
-//                   mainAxisSpacing: 16,
-//                   children: [
-//                     menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-//                     menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-//                     menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-//                     menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-//                     menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-//                     menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-//                     menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-//                     menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-
-//                   ],
-//                 ),
-//               ),
-          
-//             ],
-//           ),
-//       ),
-//       bottomNavigationBar: BottomNavigationBar(
-//         items: [
-//           BottomNavigationBarItem(
-//             backgroundColor: const Color.fromARGB(255, 64, 44, 38),
-//             icon: IconButton(icon: Icon(Icons.home),
-//             onPressed: (){},),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: IconButton(icon: Icon(Icons.menu_book),
-//             onPressed: (){},),
-//             label: 'Menu',
-
-//           ),
-//           BottomNavigationBarItem(
-//             icon: IconButton(icon: Icon(Icons.shopping_cart),
-//             onPressed: (){},),
-//             label: 'Cart',
-
-//           ),
-//           BottomNavigationBarItem(
-//             icon: IconButton(icon: Icon(Icons.person),
-//             onPressed: (){},),
-//             label: 'Profile',
-
-//           ),
-//         ],
-//         selectedItemColor: const Color.fromARGB(255, 255, 231, 222),
-//         unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
-//       ),
-    
-//     );
-//   }
-
-//   Widget featuredItem(String imagePath, String title, String price) {
-//     return Container(
-//       width: 150,
-//       margin: EdgeInsets.only(right: 16),
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(16),
-//         image: DecorationImage(
-//           image: AssetImage(imagePath),
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//       child: Container(
-//         padding: EdgeInsets.all(12),
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(16),
-//           gradient: LinearGradient(
-//             colors: [
-//               Colors.black.withOpacity(0.7),
-//               Colors.transparent,
-//             ],
-//             begin: Alignment.bottomCenter,
-//             end: Alignment.topCenter,
-//           ),
-//         ),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.end,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               title,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 16,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//             Text(
-//               price,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 14,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget categoryItem(String title, IconData icon) {
-//     return Column(
-//       children: [
-//         CircleAvatar(
-//           radius: 30,
-//           backgroundColor: Colors.brown[200],
-//           child: Icon(icon, color: Colors.white, size: 28),
-//         ),
-//         SizedBox(height: 8),
-//         Text(
-//           title,
-//           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color:  const Color.fromARGB(255, 255, 255, 255)),
-//         ),
-//       ],
-//     );
-//   }
-
-//   Widget menuItem(String imagePath, String title, String price) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(16),
-//         image: DecorationImage(
-//           image: AssetImage(imagePath),
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//       child: Container(
-//         padding: EdgeInsets.all(12),
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(16),
-//           gradient: LinearGradient(
-//             colors: [
-//               Colors.black.withOpacity(0.7),
-//               Colors.transparent,
-//             ],
-//             begin: Alignment.bottomCenter,
-//             end: Alignment.topCenter,
-//           ),
-//         ),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.end,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               title,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 16,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//             Text(
-//               price,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 14,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffeeshop/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Coffee Shop',
-//       home: AnimatedSplashScreen(
-//         splash: Center(
-//           child: Container(
-//             decoration: BoxDecoration(
-//               image: DecorationImage(
-//                 image: AssetImage('img/logo.png'),
-//               ),
-//             ),
-//           ),
-//         ),
-//         nextScreen: home(),
-//         duration: 1500,
-//         splashIconSize: 300,
-//         backgroundColor: Color.fromARGB(255, 222, 190, 163),
-//         splashTransition: SplashTransition.fadeTransition,
-//       ),
-//     );
-//   }
-// }
 
+// ignore: camel_case_types
 class home extends StatefulWidget {
-  const home({super.key});
+  final Function(int) onTabSelected;
+  
+  const home({super.key,required this.onTabSelected});
+  
 
   @override
+  // ignore: library_private_types_in_public_api
   _homeState createState() => _homeState();
 }
 
 class _homeState extends State<home> {
-  // int _selectedIndex = 0;
-
-  // Navigation Functions
-  // void _tohome() {
-  //   setState(() {
-  //     _selectedIndex = 0;
-  //   });
-  // }
-
-  // void _tomenu() {
-  //   setState(() {
-  //     _selectedIndex = 1;
-  //   });
-  //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => menu()));
-  // }
-
-  // void _tocart() {
-  //   setState(() {
-  //     _selectedIndex = 2;
-  //   });
-  //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => cart()));
-  // }
-
-  // void _toprofile() {
-  //   setState(() {
-  //     _selectedIndex = 3;
-  //   });
-  //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => profile()));
-  // }
 
   Future<String?> getUsername() async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
       DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('users')
+          .collection('Users')
           .doc(user.uid)
           .get();
 
       if (userDoc.exists) {
-        return userDoc.get('username');
+        return userDoc.get('username').toString();
       }
     }
     return null;
   }
 
   @override
+
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
-      backgroundColor: const Color.fromARGB(255, 222, 190, 163),
+  return Scaffold(
+    // backgroundColor: const Color.fromARGB(255, 218, 198, 181),
+    backgroundColor: DarkThemeColors.bg1,
+
+    appBar: AppBar(
+      scrolledUnderElevation: BorderSide.strokeAlignCenter,
+      // backgroundColor: const Color.fromARGB(255, 66, 73, 52),
+      backgroundColor: DarkThemeColors.bg2,
+
+      elevation: 0,
+      title: FutureBuilder<String?>
+      (
+        future: getUsername(), 
+        builder: (context,snapshot)
+        {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text(
+                "Loading...",
+                style: TextStyle(color: DarkThemeColors.text1),
+              );
+            } else if (snapshot.hasError) {
+              return const Text(
+                "Error",
+                style: TextStyle(color: DarkThemeColors.text1),
+              );
+            } else if (snapshot.hasData) {
+              return Text(
+                "Hello, ${snapshot.data}!",
+                style: const TextStyle(color: DarkThemeColors.text1),
+              );
+            } else {
+              return const Text(
+                "Hello, Guest!",
+                style: TextStyle(color: DarkThemeColors.text1),
+              );
+            }
+
+        })
       
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 66, 73, 52),
-        elevation: 0,
-        title: const Text(
-          'Good Morning, Rishi!',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body:
-       Padding(
-        padding: const EdgeInsets.all(0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Categories Section
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 66, 73, 52),
-                // color: const Color.fromARGB(255, 64, 44, 38),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(46),
-                    bottomRight: Radius.circular(46)),
-              ),
-              child: Column(
-                
+      // const Text(
+      //   "Hello, $getUsername()!",
+      //   style: TextStyle(color: DarkThemeColors.text1),
+      // ),
+      // actions: [
+        // IconButton(
+        //   icon: const Icon(Icons.search),
+        //   color: DarkThemeColors.text1,
+        //   onPressed: () {},
+        // ),
+      // ],
+    ),
+    body: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [                                           
+        // Scrollable Content
+        Expanded(
+          child: SingleChildScrollView(
+            child: 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+                          Container(
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+      // color: const Color.fromARGB(255, 66, 73, 52),
+      color: DarkThemeColors.bg2,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(46),
+              bottomRight: Radius.circular(46),
+            ),
+          ),
+          child: Column(
+            children: [
+              const Text(
+                'Choose your city',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: DarkThemeColors.text1,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  categoryItem('Mumbai', Icons.location_city_outlined),
+                  categoryItem('Delhi', Icons.home_work_rounded),
+                  categoryItem('Bangalore', Icons.cabin_rounded),
+                ],
+              ),
+            ],
+          ),
+        ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
                   const Text(
-                    'Categories',
+                    'Today\'s Special',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 252, 242),
+                      color: DarkThemeColors.text1
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  SizedBox(
+                    height: 90,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
+                        featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
+                        featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Offers',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: DarkThemeColors.text1
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                   GridView.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      categoryItem('Espresso', Icons.local_cafe),
-                      categoryItem('Latte', Icons.coffee),
-                      categoryItem('Cold Brew', Icons.icecream),
+                      menuItem('img/off1.png', '', ''),
+                      menuItem('img/off2.png', '', ''),
+                      menuItem('img/off3.png', '', ''),
+                      menuItem('img/off4.png', '', ''),
+                      menuItem('img/off5.png', '', ''),
+                      // menuItem('img/off3.png', '', ''),
                     ],
                   ),
+                    const SizedBox(height: 56),
+
+                    const Text(
+                    'About Us',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: DarkThemeColors.text1
+                    ),
+                  ),
+                  Container(
+                    padding:const EdgeInsets.all(12),
+                    // color: DarkThemeColors.card,
+                    child: Column(children: [
+                      const Text('Capulus, a part of Coffee Day Global Limited,is India’s favourite hangout for coffee and conversations. Popularly known as CPS, we strive to provide the best experience to our guests. Our coffees are sourced from thousands of small coffee planters, who made us who we are today and we\'re glad to be a part of their lives. We opened our first cafe in 1996 at Brigade Road in Bangalore – the youth and the young at heart immediately took to the cafe, and it continues to be one of the most happening places in the city. CPS to the youth is a “hangout” spot where they meet people, make conversations, and have a whole lot of fun over steaming cups of great coffee.It\'s been an exciting journey since then to becoming the largest organised retail cafe chain in the country.'
+                    ,style: TextStyle(color: DarkThemeColors.text2 ),),
+                            const Divider(thickness: 1,color: DarkThemeColors.text1,),
+
+                    aboutItem('img/abt1.png', 'ETHICALLY SOURCED', 'We work closely with producers to ensure that the beans are of the highest quality, grown sustainably and traded responsibly.'),
+                    const SizedBox(height: 10),
+                            const Divider(thickness: 1,color: DarkThemeColors.text1,),
+
+                    aboutItem('img/abt2.png', 'FRESHLY ROASTED', 'We specially roast your coffee in our in-house, state-of-the-art coffee roaster with specific profiles to ensure optimal flavour notes.'),
+                    const SizedBox(height: 10),
+                            const Divider(thickness: 1,color: DarkThemeColors.text1,),
+
+                    aboutItem('img/abt3.png', 'SAFELY DELIVERED', 'We do our best to ensure that your coffee reaches you properly packaged, completely fresh and well in time.'),
+                    const SizedBox(height: 10),
+                            const Divider(thickness: 1,color: DarkThemeColors.text1,),
+
+                    aboutItem('img/abt4.png', 'EASY TO MAKE', 'Life is better simplified. That’s why our coffee is easy to make both with and without equipment.'),
+
+
+
+
+                    ],
+                    )
+                    
+              
+                    ),
+
+
+              ],)
+
+              ),
+
                 ],
               ),
             ),
-            const SizedBox(height: 24),
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: const Text(
-                'Featured Drinks',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              height: 90,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  featuredItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                  featuredItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                  featuredItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: const Text(
-                'Menu',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Expanded(
-              child: GridView.count(
-                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                children: [
-                  menuItem('img/coffee1.jpeg', 'Caramel Latte', 'Rs 260'),
-                  menuItem('img/coffee2.jpeg', 'Espresso', 'Rs 300'),
-                  menuItem('img/coffee3.jpeg', 'Cold Brew', 'Rs 220'),
-                  menuItem('img/coffee4.jpeg', 'Cappuccino', 'Rs 265'),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ));
-      // bottomNavigationBar: BottomNavigationBar(
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       backgroundColor: const Color.fromARGB(255, 64, 44, 38),
-      //       icon: Icon(Icons.home),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.menu_book),
-      //       label: 'Menu',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.shopping_cart),
-      //       label: 'Cart',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person),
-      //       label: 'Profile',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: const Color.fromARGB(255, 255, 231, 222),
-      //   unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
-      //   onTap: (index) {
-      //     switch (index) {
-      //       case 0:
-      //         _tohome();
-      //         break;
-      //       case 1:
-      //         _tomenu();
-      //         break;
-      //       case 2:
-      //         _tocart();
-      //         break;
-      //       case 3:
-      //         _toprofile();
-      //         break;
-      //     }
-      //   },
-      // ),
-    // );
+          ),
+        
+      ],
+    ),
+  );
+
+
+            
   }
 
   Widget featuredItem(String imagePath, String title, String price) {
-    return Container(
+    return GestureDetector(
+      onTap: _onofferTapped,
+      child: Container(
       width: 150,
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
@@ -621,31 +276,52 @@ class _homeState extends State<home> {
             Text(
               title,
               style: const TextStyle(
-                color: Colors.white,
+                color: DarkThemeColors.text1,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                            Text(
               price,
               style: const TextStyle(
-                color: Colors.white,
+                decoration: TextDecoration.lineThrough,
+                decorationColor: DarkThemeColors.text1,
+                color: DarkThemeColors.text1,
                 fontSize: 14,
               ),
             ),
+            const Text(
+              'Rs.100',
+              style: TextStyle(
+                color: DarkThemeColors.text1
+              ),)
+
+
+              ],
+            )
           ],
         ),
       ),
-    );
+    ));
   }
+
+  void _onofferTapped() {
+     widget.onTabSelected(1);
+    }
+
+
 
   Widget categoryItem(String title, IconData icon) {
     return Column(
       children: [
         CircleAvatar(
           radius: 30,
-          backgroundColor: const Color.fromARGB(255, 110, 117, 96),
-          child: Icon(icon, color: Colors.white, size: 28),
+          // backgroundColor: const Color.fromARGB(255, 110, 117, 96),
+          backgroundColor: DarkThemeColors.citybg,
+          child: Icon(icon, color: DarkThemeColors.text1, size: 28),
         ),
         const SizedBox(height: 8),
         Text(
@@ -660,7 +336,11 @@ class _homeState extends State<home> {
   }
 
   Widget menuItem(String imagePath, String title, String price) {
-    return Container(
+    return
+         GestureDetector(
+      onTap: _onofferTapped,
+child: 
+    Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
@@ -674,7 +354,7 @@ class _homeState extends State<home> {
           borderRadius: BorderRadius.circular(16),
           gradient: LinearGradient(
             colors: [
-              Colors.black.withOpacity(0.7),
+              Colors.black.withOpacity(0.0),
               Colors.transparent,
             ],
             begin: Alignment.bottomCenter,
@@ -688,7 +368,7 @@ class _homeState extends State<home> {
             Text(
               title,
               style: const TextStyle(
-                color: Colors.white,
+                color: DarkThemeColors.text1,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -696,13 +376,96 @@ class _homeState extends State<home> {
             Text(
               price,
               style: const TextStyle(
-                color: Colors.white,
+                color: DarkThemeColors.text1,
                 fontSize: 14,
               ),
             ),
           ],
         ),
       ),
-    );
+    ));
   }
 }
+
+  Widget aboutItem(String imagePath, String title, String desc) {
+    return 
+    Container(
+    //   width: 250,
+    //   height: 250,
+    //   margin: const EdgeInsets.only(right: 16),
+    //   decoration: BoxDecoration(
+    //     borderRadius: BorderRadius.circular(16),
+    //     image: DecorationImage(
+    //       image: AssetImage(imagePath),
+    //       fit: BoxFit.contain,
+    //     ),
+    //   ),
+    //   child: Container(
+    //     padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(0),
+              Colors.transparent,
+            ],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+          ),
+        ),
+        child:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            AnimatedContainer(
+              duration: Duration(seconds: 1),
+      width: 250,
+      height: 250,
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        // shape: BoxShape.circle,
+        borderRadius: BorderRadius.circular(80),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+      // child: 
+      // Container(
+      //   padding: const EdgeInsets.all(12),
+      //   decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(16),
+      //     gradient: LinearGradient(
+      //       colors: [
+      //         Colors.black.withOpacity(0.8),
+      //         Colors.transparent,
+      //       ],
+      //       begin: Alignment.bottomCenter,
+      //       end: Alignment.topCenter,
+      //     ),
+      //   ),)
+        ),
+            Text(
+              title,
+              style: const TextStyle(
+                color: DarkThemeColors.text1,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              desc,
+              style: const TextStyle(
+                color: DarkThemeColors.text2,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        )
+        );
+    //   ),
+    // );
+  
+  }
+

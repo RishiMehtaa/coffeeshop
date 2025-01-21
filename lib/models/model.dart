@@ -1,12 +1,10 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
 import 'dart:convert';
+import 'dart:math';
 
 List<Welcome> welcomeFromJson(String str) => List<Welcome>.from(json.decode(str).map((x) => Welcome.fromJson(x)));
 
 String welcomeToJson(List<Welcome> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+Random r = Random();
 
 class Welcome {
     String context;
@@ -22,6 +20,8 @@ class Welcome {
     List<RecipeInstruction> recipeInstructions;
     String recipeYield;
     String totalTime;
+    // final int pricer = r.nextInt(350)+ 80;
+    int price;
 
     Welcome({
         required this.context,
@@ -37,6 +37,7 @@ class Welcome {
         required this.recipeInstructions,
         required this.recipeYield,
         required this.totalTime,
+        required this.price,
     });
 
     factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
@@ -52,7 +53,9 @@ class Welcome {
         recipeIngredient: List<String>.from(json["recipeIngredient"].map((x) => x)),
         recipeInstructions: List<RecipeInstruction>.from(json["recipeInstructions"].map((x) => RecipeInstruction.fromJson(x))),
         recipeYield: json["recipeYield"],
-        totalTime: json["totalTime"],
+        totalTime: json["totalTime"], 
+        // price: r.nextInt(270)+ 80,
+        price: 100,
     );
 
     Map<String, dynamic> toJson() => {
@@ -69,6 +72,7 @@ class Welcome {
         "recipeInstructions": List<dynamic>.from(recipeInstructions.map((x) => x.toJson())),
         "recipeYield": recipeYield,
         "totalTime": totalTime,
+        "price":price
     };
 }
 
